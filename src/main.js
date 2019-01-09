@@ -4,6 +4,7 @@ import './plugins/vuetify'
 import App from './App.vue'
 import Panel from './components/Panel'
 import Topics from './components/Topics'
+import LoginCard from './components/LoginCard'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -14,6 +15,14 @@ const routes = [
     components: {
       default: Topics,
       Panel: Panel,
+    },
+  },
+  {
+    path: '/login',
+    components: {
+      default: Topics,
+      Panel: Panel,
+      LoginCard: LoginCard
     },
   },
 ]
