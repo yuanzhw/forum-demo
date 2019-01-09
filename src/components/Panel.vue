@@ -1,16 +1,43 @@
 <template>
   <v-flex xs3>
-    <v-card>
-        <v-toolbar flat height=24px>
-            <span>个人信息</span>
-            <!-- <v-toolbar-title>个人信息</v-toolbar-title> -->
-        </v-toolbar>
-        <v-btn flat>发布话题</v-btn>
+    <v-card v-if="isLogin">
+      <v-toolbar flat height="24px">
+        <span>个人信息</span>
+      </v-toolbar>
+      <v-layout align-center justify-center>
+        <v-flex text-xs-right>
+          <v-avatar size="36" color="grey lighten-4">
+            <img src="../assets/logo.png">
+          </v-avatar>
+        </v-flex>
+        <v-flex>
+          <span>yuanzhw</span>
+        </v-flex>
+        <v-flex xs5>
+          <v-spacer></v-spacer>
+        </v-flex>
+      </v-layout>
+      <v-flex>
+        <span>&nbsp;&nbsp;签名</span>
+      </v-flex>
+      <div>
+        <v-btn color="indigo" depressed>
+          <span style="color:white">发布话题</span>
+        </v-btn>
+      </div>
+    </v-card>
+    <v-card v-if="!isLogin">
+      <v-flex>
+      <span>请登陆或注册</span>
+      </v-flex>
     </v-card>
   </v-flex>
 </template>
 <script>
 export default {
-  data: () => ({})
+  data: () => ({}),
+  props: {
+    isLogin: Boolean
+  }
 };
 </script>

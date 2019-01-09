@@ -26,17 +26,24 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat>首页</v-btn>
-        <v-btn flat>未读消息</v-btn>
-        <v-btn flat>个人信息</v-btn>
-        <v-btn flat>注册</v-btn>
-        <v-btn flat>登陆</v-btn>
-        <v-btn flat>退出</v-btn>
+        <v-btn flat v-if="isLogin">
+          <v-badge color="red">
+            <span slot="badge">3</span>
+          <span>未读消息</span>
+          </v-badge>
+        </v-btn>
+        <v-btn flat v-if="isLogin">个人信息</v-btn>
+        <v-btn flat v-if="!isLogin">注册</v-btn>
+        <v-btn flat @click="login" v-if="!isLogin">登陆</v-btn>
+        <v-btn flat @click="login" v-if="isLogin">退出</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <v-layout row>
-        <Topics></Topics>
-        <Panel></Panel>
+        <!-- <Topics></Topics> -->
+        <!-- <Panel :isLogin="isLogin"></Panel> -->
+        <router-view></router-view>
+        <router-view name="Panel" :isLogin="isLogin"></router-view>
       </v-layout>
     </v-content>
     <v-footer color="indigo" app>
@@ -46,19 +53,25 @@
 </template>
 
 <script>
-import Topics from "./Topics"
-import Panel from "./Panel"
+import Topics from "./Topics";
+import Panel from "./Panel";
 
 export default {
   components: {
     Topics,
-    Panel,
+    Panel
   },
   data: () => ({
-    drawer: null
+    drawer: null,
+    isLogin: false
   }),
   props: {
     source: String
+  },
+  methods: {
+    login: function() {
+      this.isLogin = !this.isLogin;
+    }
   }
 };
 </script>
