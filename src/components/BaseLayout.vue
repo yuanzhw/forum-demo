@@ -20,18 +20,28 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <base-toolbar :isLogin="isLogin" @login="isLogin=$event" @login-view="LoginView=$event" @register-view="RegisterView=$event"></base-toolbar>
+    <base-toolbar 
+      :isLogin="isLogin" 
+      @login="isLogin=$event" 
+      @login-view="LoginView=$event" 
+      @register-view="RegisterView=$event"
+      @drawer="drawer=!drawer"
+    ></base-toolbar>
     <v-content>
       <v-layout row>
         <router-view></router-view>
         <router-view name="Panel" :isLogin="isLogin"></router-view>
         <div>
-          <card-login v-if="LoginView" @login="isLogin=$event" @login-view="LoginView=$event"></card-login>
-          <card-register
+          <dialog-card-login 
+            v-if="LoginView" 
+            @login="isLogin=$event" 
+            @login-view="LoginView=$event"
+          ></dialog-card-login>
+          <dialog-card-register
             v-if="RegisterView"
             @login="isLogin=$event"
             @register-view="RegisterView=$event"
-          ></card-register>
+          ></dialog-card-register>
         </div>
       </v-layout>
     </v-content>
@@ -43,14 +53,14 @@
 
 <script>
 import BaseToolbar from "./BaseToolbar";
-import CardLogin from "./CardLogin";
-import CardRegister from "./CardRegister";
+import DialogCardLogin from "./DialogCardLogin";
+import DialogCardRegister from "./DialogCardRegister";
 
 export default {
   components: {
     BaseToolbar,
-    CardLogin,
-    CardRegister
+    DialogCardLogin,
+    DialogCardRegister,
   },
   data: () => ({
     drawer: null,
@@ -71,8 +81,4 @@ export default {
 </script>
 
 <style scoped>
-a {
-  color: white !important;
-  text-decoration: none;
-}
 </style>
