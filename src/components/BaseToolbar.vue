@@ -12,8 +12,8 @@
           </v-badge>
         </v-btn>
         <v-btn flat v-if="isLogin">个人信息</v-btn>
-        <v-btn flat @click="$router.push('/register')" v-if="!isLogin">注册</v-btn>
-        <v-btn flat @click="$router.push('/login')" v-if="!isLogin">登陆</v-btn>
+        <v-btn flat @click="$emit('register-view', true)" v-if="!isLogin">注册</v-btn>
+        <v-btn flat @click="$emit('login-view', true)" v-if="!isLogin">登陆</v-btn>
         <v-btn flat @click="$emit('login', false)" v-if="isLogin">退出</v-btn>
       </v-toolbar-items>
     </v-toolbar>    

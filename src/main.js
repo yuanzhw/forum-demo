@@ -22,22 +22,6 @@ const routes = [
     },
   },
   {
-    path: '/login',
-    components: {
-      default: CardTopicList,
-      Panel: CardPanelUser,
-      Card: CardLogin,
-    },
-  },
-  {
-    path: '/register',
-    components: {
-      default: CardTopicList,
-      Panel: CardPanelUser,
-      Card: CardRegister,
-    },
-  },
-  {
     path: '/topic_create',
     components: {
       default: CardTopicCreate,

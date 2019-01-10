@@ -20,12 +20,19 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <BaseToolbar :isLogin="isLogin" @login="isLogin=$event"></BaseToolbar>
+    <base-toolbar :isLogin="isLogin" @login="isLogin=$event" @login-view="LoginView=$event" @register-view="RegisterView=$event"></base-toolbar>
     <v-content>
       <v-layout row>
         <router-view></router-view>
         <router-view name="Panel" :isLogin="isLogin"></router-view>
-        <router-view name="Card" @login="isLogin=$event"></router-view>
+        <div>
+          <card-login v-if="LoginView" @login="isLogin=$event" @login-view="LoginView=$event"></card-login>
+          <card-register
+            v-if="RegisterView"
+            @login="isLogin=$event"
+            @register-view="RegisterView=$event"
+          ></card-register>
+        </div>
       </v-layout>
     </v-content>
     <v-footer color="indigo" app>
@@ -35,23 +42,29 @@
 </template>
 
 <script>
-import BaseToolbar from './BaseToolbar'
+import BaseToolbar from "./BaseToolbar";
+import CardLogin from "./CardLogin";
+import CardRegister from "./CardRegister";
 
 export default {
   components: {
     BaseToolbar,
+    CardLogin,
+    CardRegister
   },
   data: () => ({
     drawer: null,
-    isLogin: false
+    isLogin: false,
+    LoginView: false,
+    RegisterView: false,
   }),
   props: {
     source: String
   },
   methods: {
     logout: function() {
-      this.$router.push('/')
-      this.isLogin = false
+      this.$router.push("/");
+      this.isLogin = false;
     }
   }
 };

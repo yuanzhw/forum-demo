@@ -22,7 +22,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" flat @click="$router.push('/')">Close</v-btn>
+        <v-btn color="blue darken-1" flat @click="$emit('register-view', false)">Close</v-btn>
         <v-btn color="blue darken-1" flat @click="login">Register</v-btn>
       </v-card-actions>
     </v-card>
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     login: function() {
-      this.$router.push("/");
+      this.$emit("register-view", false);
       this.$emit('login', true)
     },
     logout: function() {
