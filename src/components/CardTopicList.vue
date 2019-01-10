@@ -3,7 +3,7 @@
     <v-card width="100%">
       <v-list three-line>
         <template v-for="(item, index) in items">
-          <v-list-tile :key="index">
+          <v-list-tile :key="index"  @click="$router.push('/topic_detail')">
             <v-list-tile-content>
               <v-list-tile-title>topic title</v-list-tile-title>
               <v-list-tile-sub-title class="text--primary">topic headline</v-list-tile-sub-title>

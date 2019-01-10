@@ -57,7 +57,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 a {
   color: white !important;
   text-decoration: none;

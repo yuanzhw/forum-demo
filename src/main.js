@@ -2,8 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import './plugins/vuetify'
 import App from './App.vue'
-import CardPanel from './components/CardPanel'
+import CardPanelUser from './components/CardPanelUser'
+import CardPanelAuthor from './components/CardPanelAuthor'
 import CardTopicList from './components/CardTopicList'
+import CardTopicDetail from './components/CardTopicDetail'
 import CardLogin from './components/CardLogin'
 import CardRegister from './components/CardRegister'
 import CardTopicCreate from './components/CardTopicCreate'
@@ -16,14 +18,14 @@ const routes = [
     path: '/',
     components: {
       default: CardTopicList,
-      Panel: CardPanel,
+      Panel: CardPanelUser,
     },
   },
   {
     path: '/login',
     components: {
       default: CardTopicList,
-      Panel: CardPanel,
+      Panel: CardPanelUser,
       Card: CardLogin,
     },
   },
@@ -31,7 +33,7 @@ const routes = [
     path: '/register',
     components: {
       default: CardTopicList,
-      Panel: CardPanel,
+      Panel: CardPanelUser,
       Card: CardRegister,
     },
   },
@@ -39,6 +41,14 @@ const routes = [
     path: '/topic_create',
     components: {
       default: CardTopicCreate,
+    },
+  },
+  {
+    path: '/topic_detail',
+    components: {
+      default: CardTopicDetail,
+      Panel: CardPanelAuthor,
+
     },
   },
 ]
