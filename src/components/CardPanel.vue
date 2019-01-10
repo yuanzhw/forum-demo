@@ -21,7 +21,7 @@
         <span>&nbsp;&nbsp;签名</span>
       </v-flex>
       <div>
-        <v-btn color="indigo" depressed>
+        <v-btn color="indigo" depressed @click="$router.push('/topic_create')">
           <span style="color:white">发布话题</span>
         </v-btn>
       </div>

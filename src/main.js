@@ -6,6 +6,7 @@ import CardPanel from './components/CardPanel'
 import CardTopicList from './components/CardTopicList'
 import CardLogin from './components/CardLogin'
 import CardRegister from './components/CardRegister'
+import CardTopicCreate from './components/CardTopicCreate'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -32,6 +33,12 @@ const routes = [
       default: CardTopicList,
       Panel: CardPanel,
       Card: CardRegister,
+    },
+  },
+  {
+    path: '/topic_create',
+    components: {
+      default: CardTopicCreate,
     },
   },
 ]
