@@ -6,8 +6,6 @@ import CardPanelUser from './components/CardPanelUser'
 import CardPanelAuthor from './components/CardPanelAuthor'
 import CardTopicList from './components/CardTopicList'
 import CardTopicDetail from './components/CardTopicDetail'
-import CardLogin from './components/CardLogin'
-import CardRegister from './components/CardRegister'
 import CardTopicCreate from './components/CardTopicCreate'
 
 Vue.config.productionTip = false
