@@ -3,7 +3,7 @@
       <v-toolbar-side-icon @click.stop="$emit('drawer')"></v-toolbar-side-icon>
       <v-toolbar-title>Application</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items>
         <v-btn flat @click="$router.push('/')">首页</v-btn>
         <v-btn flat v-if="isLogin">
           <v-badge color="red">
