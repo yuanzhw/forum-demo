@@ -2,10 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import './plugins/vuetify'
 import App from './App.vue'
-import Panel from './components/Panel'
-import Topics from './components/Topics'
-import LoginCard from './components/LoginCard'
-import RegisterCard from './components/RegisterCard'
+import CardPanel from './components/CardPanel'
+import CardTopicList from './components/CardTopicList'
+import CardLogin from './components/CardLogin'
+import CardRegister from './components/CardRegister'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -14,24 +14,24 @@ const routes = [
   {
     path: '/',
     components: {
-      default: Topics,
-      Panel: Panel,
+      default: CardTopicList,
+      Panel: CardPanel,
     },
   },
   {
     path: '/login',
     components: {
-      default: Topics,
-      Panel: Panel,
-      Card: LoginCard,
+      default: CardTopicList,
+      Panel: CardPanel,
+      Card: CardLogin,
     },
   },
   {
     path: '/register',
     components: {
-      default: Topics,
-      Panel: Panel,
-      Card: RegisterCard,
+      default: CardTopicList,
+      Panel: CardPanel,
+      Card: CardRegister,
     },
   },
 ]
