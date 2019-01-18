@@ -14,6 +14,7 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.prototype.axios = axios
 Vue.prototype.Cookies = Cookies
+Vue.prototype.hostname = 'http://localhost:2000'
 
 const routes = [
   {
