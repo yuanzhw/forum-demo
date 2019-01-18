@@ -8,10 +8,10 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Username*" required></v-text-field>
+              <v-text-field label="Username*" v-model="username" required></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Password*" type="password" required></v-text-field>
+              <v-text-field label="Password*" type="password" v-model="password" required></v-text-field>
             </v-flex>
           </v-layout>
         </v-container>
@@ -28,13 +28,29 @@
 <script>
 export default {
   data: () => ({
-    dialog: true
+    dialog: true,
+    username: "",
+    password: ""
   }),
   props: {
     // dialog: Boolean,
   },
   methods: {
     login: function() {
+      let data = {
+        username: this.username,
+        password: this.password
+      };
+      this.axios
+        .post(this.hostname + "/api/user/login", data, {withCredentials: true})
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
       this.$emit("login-view", false);
       this.$emit("login", true);
     },
