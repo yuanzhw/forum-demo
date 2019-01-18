@@ -7,9 +7,13 @@ import CardPanelAuthor from './components/CardPanelAuthor'
 import CardTopicList from './components/CardTopicList'
 import CardTopicDetail from './components/CardTopicDetail'
 import CardTopicCreate from './components/CardTopicCreate'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
+Vue.prototype.axios = axios
+Vue.prototype.Cookies = Cookies
 
 const routes = [
   {
