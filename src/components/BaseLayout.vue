@@ -42,6 +42,8 @@
             v-if="RegisterView"
             @login="isLogin=$event"
             @register-view="RegisterView=$event"
+            @error-view="err"
+            :message="message"
           ></dialog-card-register>
           <dialog-card-error
             v-if="ErrorView"
