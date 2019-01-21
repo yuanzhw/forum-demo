@@ -20,10 +20,10 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <base-toolbar 
-      :isLogin="isLogin" 
-      @login="isLogin=$event" 
-      @login-view="LoginView=$event" 
+    <base-toolbar
+      :isLogin="isLogin"
+      @login="isLogin=$event"
+      @login-view="LoginView=$event"
       @register-view="RegisterView=$event"
       @drawer="drawer=!drawer"
     ></base-toolbar>
@@ -32,16 +32,22 @@
         <router-view></router-view>
         <router-view name="Panel" :isLogin="isLogin"></router-view>
         <div>
-          <dialog-card-login 
-            v-if="LoginView" 
-            @login="isLogin=$event" 
+          <dialog-card-login
+            v-if="LoginView"
+            @login="isLogin=$event"
             @login-view="LoginView=$event"
+            @error-view="err"
           ></dialog-card-login>
           <dialog-card-register
             v-if="RegisterView"
             @login="isLogin=$event"
             @register-view="RegisterView=$event"
           ></dialog-card-register>
+          <dialog-card-error
+            v-if="ErrorView"
+            @error-view="ErrorView=$event"
+            :message="message"
+          ></dialog-card-error>
         </div>
       </v-layout>
     </v-content>
@@ -55,18 +61,22 @@
 import BaseToolbar from "./BaseToolbar";
 import DialogCardLogin from "./DialogCardLogin";
 import DialogCardRegister from "./DialogCardRegister";
+import DialogCardError from "./DialogCardError";
 
 export default {
   components: {
     BaseToolbar,
     DialogCardLogin,
     DialogCardRegister,
+    DialogCardError,
   },
   data: () => ({
     drawer: null,
     isLogin: false,
     LoginView: false,
     RegisterView: false,
+    ErrorView: false,
+    message: '',
   }),
   props: {
     source: String
@@ -75,6 +85,10 @@ export default {
     logout: function() {
       this.$router.push("/");
       this.isLogin = false;
+    },
+    err: function(message) {
+      this.ErrorView = true;
+      this.message = message;
     }
   }
 };
