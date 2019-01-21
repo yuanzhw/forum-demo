@@ -11,7 +11,7 @@
           </v-avatar>
         </v-flex>
         <v-flex>
-          <span>yuanzhw</span>
+          <span>{{item.username}}</span>
         </v-flex>
         <v-flex xs5>
           <v-spacer></v-spacer>
@@ -19,6 +19,7 @@
       </v-layout>
       <v-flex>
         <span>&nbsp;&nbsp;签名</span>
+        <p>&nbsp;&nbsp;{{item.signature}}</p>
       </v-flex>
       <div>
         <v-btn color="indigo" depressed @click="$router.push('/topic_create')">
@@ -35,9 +36,31 @@
 </template>
 <script>
 export default {
-  data: () => ({}),
+  data: () => ({
+    item: {}
+  }),
   props: {
     isLogin: Boolean
+  },
+  mounted(){
+    this.getData()
+  },
+  methods:{
+    getData: function (){
+      this.axios
+          .get(this.hostname + "/api/user/detail", {
+            withCredentials: true
+          })
+          .then(response => {
+            console.log(response);
+            this.item = response.data
+          })
+          .catch(error => {
+            console.log(error);
+            this.errored = true;
+          })
+          .finally(() => (this.loading = false));
+    }
   }
 };
 </script>
