@@ -22,7 +22,7 @@
     </v-navigation-drawer>
     <base-toolbar
       :isLogin="isLogin"
-      @login="isLogin=$event"
+      @logout="logout"
       @login-view="LoginView=$event"
       @register-view="RegisterView=$event"
       @drawer="drawer=!drawer"
@@ -34,13 +34,13 @@
         <div>
           <dialog-card-login
             v-if="LoginView"
-            @login="isLogin=$event"
+            @login="login"
             @login-view="LoginView=$event"
             @error-view="err"
           ></dialog-card-login>
           <dialog-card-register
             v-if="RegisterView"
-            @login="isLogin=$event"
+            @login="login"
             @register-view="RegisterView=$event"
             @error-view="err"
             :message="message"
@@ -74,7 +74,7 @@ export default {
   },
   data: () => ({
     drawer: null,
-    isLogin: false,
+    isLogin: JSON.parse(sessionStorage.getItem('isLogin')),
     LoginView: false,
     RegisterView: false,
     ErrorView: false,
@@ -87,6 +87,11 @@ export default {
     logout: function() {
       this.$router.push("/");
       this.isLogin = false;
+      sessionStorage.setItem('isLogin', JSON.stringify(false))
+    },
+    login: function() {
+      this.isLogin = true
+      sessionStorage.setItem('isLogin', JSON.stringify(true))
     },
     err: function(message) {
       this.ErrorView = true;
