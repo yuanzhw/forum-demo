@@ -24,6 +24,7 @@
       :isLogin="isLogin"
       @logout="logout"
       @login-view="LoginView=$event"
+      @detail-view="DetailView=$event"
       @register-view="RegisterView=$event"
       @drawer="drawer=!drawer"
     ></base-toolbar>
@@ -50,6 +51,10 @@
             @error-view="ErrorView=$event"
             :message="message"
           ></dialog-card-error>
+          <dialog-card-user-detail
+            v-if="DetailView"
+            @detail-view="DetailView=$event"
+          ></dialog-card-user-detail>
         </div>
       </v-layout>
     </v-content>
@@ -64,6 +69,7 @@ import BaseToolbar from "./BaseToolbar";
 import DialogCardLogin from "./DialogCardLogin";
 import DialogCardRegister from "./DialogCardRegister";
 import DialogCardError from "./DialogCardError";
+import DialogCardUserDetail from "./DialogCardUserDetail"
 
 export default {
   components: {
@@ -71,6 +77,7 @@ export default {
     DialogCardLogin,
     DialogCardRegister,
     DialogCardError,
+    DialogCardUserDetail,
   },
   data: () => ({
     drawer: null,
@@ -78,6 +85,7 @@ export default {
     LoginView: false,
     RegisterView: false,
     ErrorView: false,
+    DetailView: false,
     message: '',
   }),
   props: {
