@@ -29,7 +29,7 @@
     </v-card>
     <v-card v-if="!isLogin">
       <v-flex>
-      <span>请登陆或注册</span>
+        <span>请登陆或注册</span>
       </v-flex>
     </v-card>
   </v-flex>
@@ -42,24 +42,31 @@ export default {
   props: {
     isLogin: Boolean
   },
-  mounted(){
-    this.getData()
+  watch: {
+    isLogin: function() {
+      if (this.isLogin === true) {
+        this.getData();
+      }
+    }
   },
-  methods:{
-    getData: function (){
+  mounted() {
+    this.getData();
+  },
+  methods: {
+    getData: function() {
       this.axios
-          .get(this.hostname + "/api/user/detail", {
-            withCredentials: true
-          })
-          .then(response => {
-            console.log(response);
-            this.item = response.data
-          })
-          .catch(error => {
-            console.log(error);
-            this.errored = true;
-          })
-          .finally(() => (this.loading = false));
+        .get(this.hostname + "/api/user/detail", {
+          withCredentials: true
+        })
+        .then(response => {
+          console.log(response);
+          this.item = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
     }
   }
 };
