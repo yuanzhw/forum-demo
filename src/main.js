@@ -31,7 +31,7 @@ const routes = [
     },
   },
   {
-    path: '/topic_detail',
+    path: '/topic_detail/:id',
     components: {
       default: CardTopicDetail,
       Panel: CardPanelAuthor,
