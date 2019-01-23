@@ -26,18 +26,18 @@ export default {
       };
       let config = {
         withCredentials: true,
-        params: {token: this.Cookies.get("csrf_token")}
+        params: { token: this.Cookies.get("csrf_token") }
       };
       this.axios
         .post(this.hostname + "/api/topic/new", data, config)
         .then(resopnse => {
           console.log(resopnse);
+          this.$router.push("/");
         })
         .catch(error => {
           console.log(error);
         })
         .finally(() => (this.loading = false));
-        this.$router.push('/')
     }
   }
 };
