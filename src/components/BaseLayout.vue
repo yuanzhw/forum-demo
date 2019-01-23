@@ -30,8 +30,8 @@
     ></base-toolbar>
     <v-content>
       <v-layout row>
-        <router-view></router-view>
-        <router-view name="Panel" :isLogin="isLogin"></router-view>
+        <router-view @get-user-id="userId=$event"></router-view>
+        <router-view name="Panel" :isLogin="isLogin" :userId='userId'></router-view>
         <div>
           <dialog-card-login
             v-if="LoginView"
@@ -87,6 +87,7 @@ export default {
     ErrorView: false,
     DetailView: false,
     message: '',
+    userId: '',
   }),
   props: {
     source: String

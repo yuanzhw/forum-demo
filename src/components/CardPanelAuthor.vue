@@ -32,34 +32,29 @@ export default {
     };
   },
   props: {
-    isLogin: Boolean
+    isLogin: Boolean,
+    userId: String
+  },
+  watch: {
+    userId: function() {
+      this.getData();
+    }
   },
   mounted() {
-    this.getData();
+    if (this.userId) {
+      this.getData();
+    }
   },
   methods: {
     getData: function() {
+      console.log(this.userId);
       this.axios
-        .get(this.hostname + "/api/topic/" + this.$route.params.id, {
+        .get(this.hostname + "/api/user/" + this.userId, {
           withCredentials: true
         })
         .then(response => {
           console.log(response);
-          let topic = response.data;
-          this.axios
-            .get(this.hostname + "/api/user/" + topic.user_id, {
-              withCredentials: true
-            })
-            .then(response => {
-              console.log(response);
-              this.item = response.data;
-            })
-            .catch(error => {
-              console.log(error);
-              this.$emit("error-view", error.response.data);
-              this.errored = true;
-            })
-            .finally(() => (this.loading = false));
+          this.item = response.data;
         })
         .catch(error => {
           console.log(error);

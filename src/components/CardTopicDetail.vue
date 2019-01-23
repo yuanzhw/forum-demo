@@ -26,6 +26,7 @@ export default {
         })
         .then(response => {
           this.item = response.data;
+          this.$emit('get-user-id', this.item.user_id.toString())
         })
         .catch(error => {
           console.log(error);
