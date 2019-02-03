@@ -10,7 +10,7 @@
               <!-- <v-list-tile-sub-title>topic suptitle</v-list-tile-sub-title> -->
             </v-list-tile-content>
             <v-list-tile-action>
-              <v-list-tile-action-text>11 min</v-list-tile-action-text>
+              <v-list-tile-action-text>{{ getTimeDiff(item.create_time) }}</v-list-tile-action-text>
               <v-icon color="grey lighten-1">star_border</v-icon>
             </v-list-tile-action>
           </v-list-tile>

@@ -8,7 +8,10 @@
         <template v-for="(item, index) in items">
           <v-list-tile :key="index">
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.username }}</v-list-tile-title>
+              <v-list-tile-title>
+                <span>{{ item.username }}</span>
+                <span class="time">{{ getTimeDiff(item.create_time) }}</span>
+              </v-list-tile-title>
               <v-list-tile-sub-title class="text--primary">{{ item.content }}</v-list-tile-sub-title>
               <!-- <v-list-tile-sub-title>topic suptitle</v-list-tile-sub-title> -->
             </v-list-tile-content>
@@ -27,8 +30,8 @@ export default {
   data: () => ({
     items: []
   }),
-  props:{
-      topic_id: String      
+  props: {
+    topic_id: String
   },
   mounted() {
     this.getData();
@@ -54,3 +57,9 @@ export default {
 };
 </script>
 
+<style scoped>
+.time {
+  padding-left: 10px;
+  font-size: 12px;
+}
+</style>
