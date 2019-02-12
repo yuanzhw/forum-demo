@@ -7,6 +7,7 @@ import CardPanelAuthor from './components/CardPanelAuthor'
 import CardTopicList from './components/CardTopicList'
 import CardTopicDetail from './components/CardTopicDetail'
 import CardTopicCreate from './components/CardTopicCreate'
+import CardMessageList from './components/CardMessageList'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
@@ -15,17 +16,17 @@ Vue.use(VueRouter)
 Vue.prototype.axios = axios
 Vue.prototype.Cookies = Cookies
 Vue.prototype.hostname = 'http://localhost:2000'
-Vue.prototype.getTimeDiff = function(t){
+Vue.prototype.getTimeDiff = function (t) {
   let create_time = new Date(t * 1000)
-  let diff =Date.now() - create_time
+  let diff = Date.now() - create_time
   let day = Math.floor(diff / (1000 * 3600 * 24))
   let hour = Math.floor(diff % (1000 * 3600 * 24) / (1000 * 3600))
   let minute = Math.ceil(diff % (1000 * 3600 * 24) % (1000 * 3600) / (1000 * 60))
-  if (day){
+  if (day) {
     return day + '天前'
-  }else if(hour){
+  } else if (hour) {
     return hour + '小时前'
-  }else if(minute){
+  } else if (minute) {
     return minute + '分钟前'
   }
 }
@@ -52,7 +53,17 @@ const routes = [
 
     },
   },
+  {
+    path: '/message',
+    components: {
+      default: CardMessageList,
+      Panel: CardPanelUser,
+
+    },
+  },
 ]
+
+export const stat = { unread:Number };
 
 const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes
