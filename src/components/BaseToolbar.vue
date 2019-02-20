@@ -7,7 +7,7 @@
       <v-btn flat @click="$router.push('/')">首页</v-btn>
       <v-btn flat v-if="isLogin" @click="$router.push('/message')">
         <v-badge color="red">
-          <span slot="badge" v-if="stat.unread"> {{ stat.unread }} </span>
+          <span slot="badge" v-if="store.stat.unread"> {{ store.stat.unread }} </span>
           <span>未读消息</span>
         </v-badge>
       </v-btn>
@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import { stat } from '../main.js';
+import { store } from '../main.js';
 export default {
   data: () => ({
     item: Object,
-    stat:stat,
+    store:store,
   }),
   props: {
     isLogin: Boolean
@@ -41,7 +41,7 @@ export default {
         .then(response => {
           console.log(response);
           this.item = response.data;
-          this.stat.unread = this.item.unread
+          this.store.setUnreadAction(this.item.unread)
         })
         .catch(error => {
           console.log(error);

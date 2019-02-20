@@ -63,7 +63,16 @@ const routes = [
   },
 ]
 
-export const stat = { unread:Number };
+export const store = {
+  debug: true,
+  stat: {
+    unread: Number
+  },
+  setUnreadAction(value) {
+    if (this.debug) console.log('set unread with', value)
+    this.stat.unread = value
+  }
+};
 
 const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes

@@ -21,11 +21,11 @@
   </v-flex>
 </template>
 <script>
-import { stat } from "../main.js";
+import { store } from "../main.js";
 export default {
   data: () => ({
     items: [],
-    stat: stat
+    store: store
   }),
   mounted() {
     this.getData();
@@ -54,9 +54,10 @@ export default {
         })
         .then(response => {
           console.log(response);
-          item.read = true;
-          this.stat.unread -= 1;
-          this.$emit("read");
+          if (item.read === false) {
+            item.read = true;
+            this.store.setUnreadAction(this.store.stat.unread - 1);
+          }
         })
         .catch(error => {
           console.log(error);
