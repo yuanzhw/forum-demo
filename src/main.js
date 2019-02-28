@@ -15,7 +15,8 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.prototype.axios = axios
 Vue.prototype.Cookies = Cookies
-Vue.prototype.hostname = 'http://localhost:2000'
+Vue.prototype.hostname = process.env.VUE_APP_HOSTNAME
+console.log(process.env)
 Vue.prototype.getTimeDiff = function (t) {
   let create_time = new Date(t * 1000)
   let diff = Date.now() - create_time
