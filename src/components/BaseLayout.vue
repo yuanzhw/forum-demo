@@ -21,7 +21,6 @@
       </v-list>
     </v-navigation-drawer>
     <base-toolbar
-      :isLogin="isLogin"
       @logout="logout"
       @login-view="LoginView=$event"
       @detail-view="DetailView=$event"
@@ -31,7 +30,7 @@
     <v-content>
       <v-layout row>
         <router-view @get-user-id="userId=$event"></router-view>
-        <router-view name="Panel" :isLogin="isLogin" :userId='userId'></router-view>
+        <router-view name="Panel" :userId='userId'></router-view>
         <div>
           <dialog-card-login
             v-if="LoginView"
@@ -70,6 +69,7 @@ import DialogCardLogin from "./DialogCardLogin";
 import DialogCardRegister from "./DialogCardRegister";
 import DialogCardError from "./DialogCardError";
 import DialogCardUserDetail from "./DialogCardUserDetail"
+import { store } from '../main.js';
 
 export default {
   components: {
@@ -88,18 +88,29 @@ export default {
     DetailView: false,
     message: '',
     userId: '',
+    store:store,
   }),
   props: {
     source: String
   },
+  mounted(){
+    if(sessionStorage.getItem('isLogin') === "true"){
+      console.log('true')
+      this.store.loginAction()
+    }else if(sessionStorage.getItem('isLogin') === "false"){
+      console.log('false')
+      this.store.logoutAction()
+    }
+
+  },
   methods: {
     logout: function() {
       this.$router.push("/");
-      this.isLogin = false;
+      this.store.logoutAction();
       sessionStorage.setItem('isLogin', JSON.stringify(false))
     },
     login: function() {
-      this.isLogin = true
+      this.store.loginAction()
       sessionStorage.setItem('isLogin', JSON.stringify(true))
     },
     err: function(message) {

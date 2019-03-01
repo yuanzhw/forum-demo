@@ -28,6 +28,7 @@
   </v-dialog>
 </template>
 <script>
+import { store } from '../main.js';
 export default {
   data: () => ({
     dialog: true,
@@ -41,6 +42,7 @@ export default {
     passwordRules: [
       v => !!v || "password is required"
     ],
+    store:store,
   }),
   props: {
     // dialog: Boolean,
@@ -61,6 +63,7 @@ export default {
             console.log(response);
             this.$emit("login-view", false);
             this.$emit("login", true);
+            this.store.loginAction()
           })
           .catch(error => {
             console.log(error);

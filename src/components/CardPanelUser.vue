@@ -1,6 +1,6 @@
 <template>
   <v-flex xs3>
-    <v-card v-if="isLogin">
+    <v-card v-if="store.stat.isLogin">
       <v-toolbar flat height="24px">
         <span>个人信息</span>
       </v-toolbar>
@@ -27,7 +27,7 @@
         </v-btn>
       </div>
     </v-card>
-    <v-card v-if="!isLogin">
+    <v-card v-if="!store.stat.isLogin">
       <v-flex>
         <span>请登陆或注册</span>
       </v-flex>
@@ -35,12 +35,13 @@
   </v-flex>
 </template>
 <script>
+import { store } from '../main.js'
 export default {
   data: () => ({
-    item: {}
+    item: {},
+    store:store,
   }),
   props: {
-    isLogin: Boolean
   },
   watch: {
     isLogin: function() {

@@ -67,11 +67,37 @@ const routes = [
 export const store = {
   debug: true,
   stat: {
-    unread: Number
+    unread: Number,
+    isLogin: Boolean,
   },
   setUnreadAction(value) {
     if (this.debug) console.log('set unread with', value)
     this.stat.unread = value
+  },
+  loginAction(){
+    if (this.debug) console.log('login')
+    this.getUnreadNum()
+    this.stat.isLogin = true
+  },
+  logoutAction(){
+    if (this.debug) console.log('logout')
+    this.stat.isLogin = false
+  },
+  getUnreadNum(){
+    axios
+        .get(process.env.VUE_APP_HOSTNAME + "/api/message/unread", {
+          withCredentials: true
+        })
+        .then(response => {
+          console.log(response);
+          this.setUnreadAction(response.data.unread)
+        })
+        .catch(error => {
+          console.log(error);
+          this.$emit("error-view", error.response.data);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
   }
 };
 
