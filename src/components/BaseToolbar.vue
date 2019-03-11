@@ -5,16 +5,16 @@
     <v-spacer></v-spacer>
     <v-toolbar-items>
       <v-btn flat @click="$router.push('/')">首页</v-btn>
-      <v-btn flat v-if="isLogin" @click="$router.push('/message')">
+      <v-btn flat v-if="store.stat.isLogin" @click="$router.push('/message')">
         <v-badge color="red">
           <span slot="badge" v-if="store.stat.unread"> {{ store.stat.unread }} </span>
           <span>未读消息</span>
         </v-badge>
       </v-btn>
-      <v-btn flat v-if="isLogin" @click="$emit('detail-view', true)">个人信息</v-btn>
-      <v-btn flat @click="$emit('register-view', true)" v-if="!isLogin">注册</v-btn>
-      <v-btn flat @click="$emit('login-view', true)" v-if="!isLogin">登陆</v-btn>
-      <v-btn flat @click="$emit('logout')" v-if="isLogin">退出</v-btn>
+      <v-btn flat v-if="store.stat.isLogin" @click="$emit('detail-view', true)">个人信息</v-btn>
+      <v-btn flat @click="$emit('register-view', true)" v-if="!store.stat.isLogin">注册</v-btn>
+      <v-btn flat @click="$emit('login-view', true)" v-if="!store.stat.isLogin">登陆</v-btn>
+      <v-btn flat @click="$emit('logout')" v-if="store.stat.isLogin">退出</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -27,7 +27,6 @@ export default {
     store:store,
   }),
   props: {
-    isLogin: Boolean
   },
   mounted(){
     this.getUnread()
