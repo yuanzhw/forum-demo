@@ -1,6 +1,5 @@
 <template>
   <v-toolbar color="indigo" dark fixed app>
-    <v-toolbar-side-icon @click.stop="$emit('drawer')"></v-toolbar-side-icon>
     <v-toolbar-title>Application</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
