@@ -1,6 +1,10 @@
 <template>
   <v-flex d-flex>
     <v-card width="100%">
+      <v-toolbar flat>
+        <v-spacer></v-spacer>
+        <v-btn flat @click="read_all">全部已读</v-btn>
+      </v-toolbar>
       <v-list three-line>
         <template v-for="(item, index) in items">
           <v-list-tile :key="index" @click="read(item)">
@@ -65,6 +69,24 @@ export default {
           this.errored = true;
         })
         .finally(() => (this.loading = false));
+    },
+    read_all: function(){
+      this.axios
+        .get(this.hostname + "/api/message/read_all",{
+          withCredentials: true
+        })
+        .then(response => {
+          console.log(response);
+          for (let i in this.items){
+            this.items[i].read = true
+          }
+          this.store.setUnreadAction(0)
+        })
+        .catch(error => {
+          console.log(error);
+          this.$emit("error-view", error.response.data);
+          this.errored = true
+        })
     }
   }
 };
