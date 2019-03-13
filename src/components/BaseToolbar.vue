@@ -1,6 +1,6 @@
 <template>
   <v-toolbar color="indigo" dark fixed app>
-    <v-toolbar-title>Application</v-toolbar-title>
+    <v-toolbar-title>Yuanzhw的个人论坛</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items>
       <v-btn flat @click="$router.push('/')">首页</v-btn>

@@ -9,14 +9,14 @@
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-layout wrap>
               <v-flex xs12>
-                <v-text-field label="Username*" v-model="item.username" :rules="nameRules" required></v-text-field>
+                <v-text-field label="用户名*" v-model="item.username" :rules="nameRules" required></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <v-text-field label="E-mail*" :rules="emailRules" v-model="item.email" required></v-text-field>
+                <v-text-field label="邮箱*" :rules="emailRules" v-model="item.email" required></v-text-field>
               </v-flex>
               <v-flex xs12>
                 <v-text-field
-                  label="Signature*"
+                  label="签名*"
                   :rules="signatureRules"
                   v-model="item.signature"
                   required
@@ -25,7 +25,7 @@
             </v-layout>
           </v-form>
         </v-container>
-        <small>*indicates required field</small>
+        <small>*必填项</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -42,11 +42,11 @@ export default {
     valid: true,
     item: {},
     nameRules: [
-      v => !!v || "Name is required",
-      v => (!!v && v.length <= 20) || "Name must be less than 20 characters"
+      v => !!v || "请输入用户名",
+      v => (!!v && v.length <= 20) || "用户名不能超过20个字符"
     ],
-    emailRules: [v => !!v || "E-mail is required"],
-    signatureRules: [v => !!v || "Signature is required"]
+    emailRules: [v => !!v || "请输入邮箱"],
+    signatureRules: [v => !!v || "请输入签名"]
   }),
   mounted() {
     this.getData();
